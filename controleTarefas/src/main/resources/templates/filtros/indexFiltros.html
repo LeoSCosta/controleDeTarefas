@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Tarefas</title>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron  mb-0">
+      <h1 class="display-4">Filtros</h1>
+    </div>
+    <nav class="nav nav-pills nav-fill">
+      <a class="nav-item nav-link" href="/api/home">Inicio</a>
+      <a class="nav-item nav-link" href="/api/projetos/home">Projetos</a>
+      <a class="nav-item nav-link" href="/api/tarefas/home">Tarefas</a>
+      <a class="nav-item nav-link active" href="/api/filtros/home">Filtros</a>
+    </nav>
+    <nav class="nav nav-pills nav-fill">
+      <a class="nav-item nav-link active" href="/api/filtros/especiais">Filtros Especiais</a>
+    </nav>
+
+
+    <form  action="/api/filtros/filtrar" method="post">
+      <div class="form-group">
+        <label>Filtrar por projeto</label>
+        <select   name="projetoDaTarefa" class="form-control" aria-label="Default select example">
+          <option selected>Selecione um projeto</option>
+          <th:block th:each="projeto: ${projetos}">
+            <option th:text="${projeto}" th:value="${projeto.id}">projeto</option>
+          </th:block>
+        </select>
+      </div>
+
+      <div class="card-body row">
+
+        <div class="col-6">
+          <label>Data inicio</label>
+          <input class="form-control" name="dataInicial"  type="date" placeholder="Qual projeto esta tarefa pertence">
+
+        </div>
+        <div class="col-6">
+          <label>Data final</label>
+          <input class="form-control" name="dataFinal" type="date" placeholder="Qual projeto esta tarefa pertence">
+
+        </div>
+
+      </div>
+      <div class="card-body row ">
+        <div class="form-group col-3">
+          <label>Filtrar por tempo</label>
+          <input  name="duracaoDaTarefa" class="form-control" type="number" placeholder="Filtrar por tempo">
+        </div>
+
+
+        <div class="form-group col-3">
+          <label>Filtrar pro frequencia</label>
+          <select name="frequenciaDaTarefa" class="form-control" aria-label="Default select example">
+            <option selected>Selecione uma frequencia</option>
+            <option value="DIARIAMENTE">DIARIAMENTE</option>
+            <option value="SEMANALMENTE">SEMANALMENTE</option>
+            <option value="MENSALMENTE">MENSALMENTE</option>
+          </select>
+        </div>
+
+        <div class="form-group col-3">
+          <label>Filtrar por prioridade</label>
+          <select  name="prioridadeDaTarefa" class="form-control" aria-label="Default select example">
+            <option selected>Selecione uma prioridade</option>
+            <option value="ALTA">ALTA</option>
+            <option value="MEDIA">MEDIA</option>
+            <option value="BAIXA">BAIXA</option>
+          </select>
+        </div>
+
+        <div class="form-group col-3">
+          <label>Filtrar por status</label>
+          <select name="status" class="form-control" aria-label="Default select example">
+            <option selected>Selecione o status</option>
+            <option value="PENDENTE">PENDENDE</option>
+            <option value="FINALIZADA">FINALIZADA</option>
+
+          </select>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label>Definir Ordem</label>
+        <select  name="ordem" class="form-control" aria-label="Default select example">
+          <option value="AlfabeticaCrescente">Alfabetica(A → Z)</option>
+          <option value="AlfabeticaDecrescente">Alfabetica(Z → A)</option>
+          <option selected value="dataCrescente">Data(crescente)</option>
+          <option value="dataDecrescente">Data(Decrescente)</option>
+          <option value="duracaoMenor">Duração(crescente)</option>
+          <option value="duracaoMaior">Duração(decrescente)</option>
+          <option value="prioridadeBaixa">Prioridade(Alta → Baixa)</option>
+          <option value="prioridadeAlta">Prioridade(Baixa → Alta)</option>
+          <option value="pendente">Status(pendente → finalizada)</option>
+          <option value="finalizada">Status(finalizada → pendente)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">Filtrar</button>
+
+    </form>
+
+    <div class="card" th:each="tarefa: ${tarefas}">
+      <div class="card-header">Titulo da tarefa: <span th:text="${tarefa.titulo}"> tarefa </span></div>
+
+      <div class="card-body row">
+        <div class="col-3"> Projeto: <span th:text="${tarefa.projeto}">Paz mundial</span></div>
+        <div class="col-2"> Duração: <span th:text="${tarefa.duracao}">2</span> min</div>
+        <div class="col-1.5"> Prioridade: <span th:text="${tarefa.prioridade}">Baixa</span></div>
+        <div class="col-2"> Data: <span th:text="${#temporals.format(tarefa.dataTarefa,'dd-MMM-YYYY')}">12/12/1994</span></div>
+        <th:block th:switch="${tarefa.status.name()}">
+          <div th:case="'PENDENTE'" class="col-2"><span class="alert alert-danger" role="alert">PENDENTE</span></div>
+          <div th:case="'FINALIZADA'" class="col-2"><span class="alert alert-success" role="alert">FINALIZADA</span></div>
+        </th:block>
+        <div >
+          <a th:href="@{'/api/tarefas/concluir/'+${tarefa.id}}"> Concluir </a>
+          <a th:href="@{'/api/tarefas/excluir/'+${tarefa.id}}">  Excluir</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>

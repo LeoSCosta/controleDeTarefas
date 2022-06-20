@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Tarefas</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron  mb-0">
+        <h1 class="display-4">Novo projeto</h1>
+    </div>
+    <nav class="nav nav-pills nav-fill">
+        <a class="nav-item nav-link" href="/api/home">Inicio</a>
+        <a class="nav-item nav-link active" href="/api/projetos/home">Projetos</a>
+        <a class="nav-item nav-link" href="/api/tarefas/home">Tarefas</a>
+        <a class="nav-item nav-link" href="/api/filtros/home">Filtros</a>
+    </nav>
+
+    <form th:object="${projetoDto}" class="card-body" action="novo" method="post">
+        <div class="form-group">
+            <label>Titulo do projeto</label>
+            <input th:field="*{tituloDoProjeto}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="Escolha um titulo que descreva a tarefa">
+            <div class="invalid-feedback" th:errors="*{tituloDoProjeto}"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Data de conclusão do projeto</label>
+            <input th:field="*{dataConclusao}" th:errorclass="is-invalid" class="form-control" type="date" placeholder="Qual projeto esta tarefa pertence">
+            <div class="invalid-feedback" th:errors="*{dataConclusao}"></div>
+        </div>
+
+        <button type="submit">Criar Projeto</button>
+
+    </form>
+</div>
+</body>

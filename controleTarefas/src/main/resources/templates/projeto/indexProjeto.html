@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Tarefas</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron  mb-0">
+        <h1 class="display-4">Projetos</h1>
+    </div>
+    <nav class="nav nav-pills nav-fill">
+        <a class="nav-item nav-link" href="/api/home">Inicio</a>
+        <a class="nav-item nav-link active" href="/api/projetos/home">Projetos</a>
+        <a class="nav-item nav-link" href="/api/tarefas/home">Tarefas</a>
+        <a class="nav-item nav-link" href="/api/filtros/home">Filtros</a>
+    </nav>
+    <div>
+
+        <nav class="nav nav-pills nav-fill">
+            <a class="nav-item nav-link active" href="/api/projetos/novoProjeto">Novo Projeto</a>
+        </nav>
+    </div>
+
+    <div>
+        <h2 class="alert alert-secondary" role="alert"> Lista de projetos </h2>
+        <div class="card" th:each="projeto: ${projetos}">
+
+            <div class="card-body row">
+                <div class="col-4"> Projeto:  <span th:text="${projeto.nome}">Paz mundial</span></div>
+                <div class="col-4"> Data de conclusão: <span th:text="${#temporals.format(projeto.dataConclusao,'dd-MMM-YYYY')}">12/12/1994</span></div>
+                <th:block th:switch="${projeto.status.name()}">
+                    <div th:case="'PENDENTE'" class="col-2"><span class="alert alert-danger" role="alert">PENDENTE</span></div>
+                    <div th:case="'FINALIZADA'" class="col-2"><span class="alert alert-success" role="alert">FINALIZADA</span></div>
+                </th:block>
+                <div >
+                    <a th:href="@{'concluir/'+${projeto.id}}"> Concluir </a>
+                    <a th:href="@{'excluir/'+${projeto.id}}">  Excluir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

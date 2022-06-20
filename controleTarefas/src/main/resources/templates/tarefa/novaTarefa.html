@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Tarefas</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron  mb-0">
+        <h1 class="display-4">Nova tarefa</h1>
+    </div>
+    <nav class="nav nav-pills nav-fill">
+        <a class="nav-item nav-link" href="/api/home">Inicio</a>
+        <a class="nav-item nav-link" href="/api/projetos/home">Projetos</a>
+        <a class="nav-item nav-link active" href="/api/tarefas/home">Tarefas</a>
+        <a class="nav-item nav-link" href="/api/filtros/home">Filtros</a>
+    </nav>
+
+    <form th:object="${tarefaDto}" action="nova" method="post">
+        <div class="form-group">
+            <label>Titulo da tarefa</label>
+            <input th:field="*{tituloDaTarefa}" class="form-control" type="text" placeholder="Escolha um titulo que descreva a tarefa">
+        </div>
+
+        <div class="form-group">
+            <label>Projeto</label>
+            <select th:field="*{projetoDaTarefa}" class="form-control" aria-label="Default select example">
+
+                <th:block th:each="projeto: ${projetos}">
+                <option th:text="${projeto}" th:value="${projeto.id}">projeto</option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Duração da tarefa</label>
+            <input th:field="*{duracaoDaTarefa}" class="form-control" type="number" placeholder="Quanto tempo a tarefa demora para ser executada em minutos">
+        </div>
+
+        <div class="form-group">
+            <label>Frequencia</label>
+            <select th:field="*{frequenciaDaTarefa}" class="form-control" aria-label="Default select example">
+
+                <option value="DIARIAMENTE">DIARIAMENTE</option>
+                <option value="SEMANALMENTE">SEMANALMENTE</option>
+                <option value="MENSALMENTE">MENSALMENTE</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Prioridade</label>
+            <select th:field="*{prioridadeDaTarefa}" class="form-control" aria-label="Default select example">
+
+                <option value="ALTA">ALTA</option>
+                <option value="MEDIA">MEDIA</option>
+                <option value="BAIXA">BAIXA</option>
+            </select>
+        </div>
+
+        <button type="submit">Criar Tarefa</button>
+
+    </form>
+</div>
+</body>

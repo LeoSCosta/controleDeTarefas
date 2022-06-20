@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Tarefas</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron  mb-0">
+        <h1 class="display-4">Tarefas</h1>
+    </div>
+    <nav class="nav nav-pills nav-fill">
+        <a class="nav-item nav-link" href="/api/home">Inicio</a>
+        <a class="nav-item nav-link" href="/api/projetos/home">Projetos</a>
+        <a class="nav-item nav-link active" href="/api/tarefas/home">Tarefas</a>
+        <a class="nav-item nav-link" href="/api/filtros/home">Filtros</a>
+    </nav>
+    <div>
+
+        <nav class="nav nav-pills nav-fill">
+            <a class="nav-item nav-link active" href="/api/tarefas/novaTarefa">Nova Tarefa</a>
+        </nav>
+    </div>
+
+    <div>
+        <h2 class="alert alert-secondary" role="alert"> Lista de Tarefas </h2>
+        <div class="card" th:each="tarefa: ${tarefas}">
+            <div class="card-header">Titulo da tarefa: <span th:text="${tarefa.titulo}">tarefa</span></div>
+            <div class="card-body row">
+                <div class="col-3"> Projeto: <span th:text="${tarefa.projeto}">Paz mundial</span></div>
+                <div class="col-2"> Duração: <span th:text="${tarefa.duracao}">2</span> min</div>
+                <div class="col-1.5"> Prioridade: <span th:text="${tarefa.prioridade}">Baixa</span></div>
+                <div class="col-2"> Data: <span th:text="${#temporals.format(tarefa.dataTarefa,'dd-MMM-YYYY')}">12/12/1994</span></div>
+                <th:block th:switch="${tarefa.status.name()}">
+                    <div th:case="'PENDENTE'" class="col-2"><span class="alert alert-danger" role="alert">PENDENTE</span></div>
+                    <div th:case="'FINALIZADA'" class="col-2"><span class="alert alert-success" role="alert">FINALIZADA</span></div>
+                </th:block>
+                <div >
+                    <a th:href="@{'concluir/'+${tarefa.id}}"> Concluir </a>
+                    <a th:href="@{'excluir/'+${tarefa.id}}">  Excluir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
