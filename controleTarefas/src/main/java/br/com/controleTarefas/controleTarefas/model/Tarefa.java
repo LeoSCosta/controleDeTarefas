@@ -2,9 +2,9 @@ package br.com.controleTarefas.controleTarefas.model;
 
 
 
-import br.com.controleTarefas.controleTarefas.util.Frequencia;
-import br.com.controleTarefas.controleTarefas.util.Prioridade;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Frequencia;
+import br.com.controleTarefas.controleTarefas.service.Prioridade;
+import br.com.controleTarefas.controleTarefas.service.Status;
 
 import javax.persistence.*;
 import java.time.LocalDate;

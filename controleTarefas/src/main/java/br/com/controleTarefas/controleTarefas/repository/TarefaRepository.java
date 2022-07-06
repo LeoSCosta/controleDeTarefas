@@ -2,7 +2,7 @@ package br.com.controleTarefas.controleTarefas.repository;
 
 import br.com.controleTarefas.controleTarefas.model.Projeto;
 import br.com.controleTarefas.controleTarefas.model.Tarefa;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

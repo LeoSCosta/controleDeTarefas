@@ -2,7 +2,7 @@ package br.com.controleTarefas.controleTarefas.controller;
 
 import br.com.controleTarefas.controleTarefas.model.Tarefa;
 import br.com.controleTarefas.controleTarefas.repository.TarefaRepository;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

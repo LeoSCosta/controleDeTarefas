@@ -1,12 +1,11 @@
 package br.com.controleTarefas.controleTarefas.controller;
 
 import br.com.controleTarefas.controleTarefas.dto.ProjetoDto;
-import br.com.controleTarefas.controleTarefas.dto.TarefaDto;
 import br.com.controleTarefas.controleTarefas.model.Projeto;
 import br.com.controleTarefas.controleTarefas.model.Tarefa;
 import br.com.controleTarefas.controleTarefas.repository.ProjetoRepository;
 import br.com.controleTarefas.controleTarefas.repository.TarefaRepository;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +53,10 @@ public class ProjetoController {
     @GetMapping(value = "concluir/{id}")
     public String finalizarProjeto (@PathVariable("id")Long id, RedirectAttributes redirAttrs){
         Optional<Projeto> byId = projetoRepository.findById(id);
-        Projeto projeto = byId.get();
+        Projeto projeto = new Projeto();
+        if (byId.isPresent()){
+            projeto = byId.get();
+        }
         List<Tarefa> tarefas = tarefaRepository.findByProjeto(projeto);
         tarefas.forEach(this::finalizarTarefa);
         projeto.setStatus(Status.FINALIZADA);
@@ -64,9 +66,12 @@ public class ProjetoController {
     }
 
     @GetMapping(value = "excluir/{id}")
-    public String excluirProjeto (@PathVariable("id")Long id, RedirectAttributes redirAttrs){
+    public String excluirProjeto (@PathVariable("id") Long id, RedirectAttributes redirAttrs){
         Optional<Projeto> byId = projetoRepository.findById(id);
-        Projeto projeto = byId.get();
+        Projeto projeto = new Projeto();
+        if (byId.isPresent()){
+            projeto = byId.get();
+        }
         List<Tarefa> tarefas = tarefaRepository.findByProjeto(projeto);
         tarefas.forEach(tarefa -> tarefaRepository.deleteById(tarefa.getId()));
         projetoRepository.deleteById(id);

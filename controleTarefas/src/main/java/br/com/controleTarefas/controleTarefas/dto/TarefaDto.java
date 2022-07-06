@@ -1,13 +1,11 @@
 package br.com.controleTarefas.controleTarefas.dto;
 
 import br.com.controleTarefas.controleTarefas.model.Tarefa;
-import br.com.controleTarefas.controleTarefas.util.Frequencia;
-import br.com.controleTarefas.controleTarefas.util.Prioridade;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Frequencia;
+import br.com.controleTarefas.controleTarefas.service.Prioridade;
+import br.com.controleTarefas.controleTarefas.service.Status;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 
 
 public class TarefaDto {

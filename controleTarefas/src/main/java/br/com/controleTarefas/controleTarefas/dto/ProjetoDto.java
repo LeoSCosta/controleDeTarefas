@@ -1,7 +1,7 @@
 package br.com.controleTarefas.controleTarefas.dto;
 
 import br.com.controleTarefas.controleTarefas.model.Projeto;
-import br.com.controleTarefas.controleTarefas.util.Status;
+import br.com.controleTarefas.controleTarefas.service.Status;
 
 
 import javax.validation.constraints.NotBlank;
