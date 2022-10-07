@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class Ordernar implements Filtrar{
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         switch (tarefaDto.getOrdem()){
             case "AlfabeticaCrescente":
                 tarefas.sort(Comparator.comparing(Tarefa::getTitulo));

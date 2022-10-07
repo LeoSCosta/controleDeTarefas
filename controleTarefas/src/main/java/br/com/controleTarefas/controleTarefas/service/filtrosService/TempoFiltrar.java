@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class TempoFiltrar implements Filtrar {
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         List<Tarefa> tarefasAux = new ArrayList<>();
         if(!tarefaDto.getDuracaoDaTarefa().isEmpty()){
             int duracao = Integer.parseInt(tarefaDto.getDuracaoDaTarefa());

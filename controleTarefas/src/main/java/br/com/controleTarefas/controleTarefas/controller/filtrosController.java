@@ -44,11 +44,13 @@ public class  filtrosController {
 
         return "filtros/indexFiltros";
     }
+
+
     @PostMapping("/filtrar")
     public String filtrar(Model model, TarefaDto tarefaDto){
 
         List<Tarefa> tarefas = tarefaRepository.findAll();
-        tarefas = filtroService.filtrar( tarefaDto,  tarefas, tarefaRepository,  projetoRepository);
+        tarefas = filtroService.filtrar( tarefaDto, tarefas);
 
         List<Projeto> projetos = projetoRepository.findAll();
         model.addAttribute("projetos",projetos);

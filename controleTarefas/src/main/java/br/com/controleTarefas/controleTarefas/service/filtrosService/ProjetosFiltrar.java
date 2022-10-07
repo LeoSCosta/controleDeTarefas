@@ -14,8 +14,10 @@ import java.util.Optional;
 @Component
 public class ProjetosFiltrar implements Filtrar {
 
+    private ProjetoRepository projetoRepository;
+
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas,TarefaRepository tarefaRepository,ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         List<Tarefa> tarefaAux = new ArrayList<>();
         if (!tarefaDto.getProjetoDaTarefa().equalsIgnoreCase("Selecione um projeto")){
             Optional<Projeto> projetoOptional = projetoRepository.findById(Long.valueOf(tarefaDto.getProjetoDaTarefa()));

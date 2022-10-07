@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class PrioridadeFiltrar implements Filtrar {
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         List<Tarefa> tarefasAux = new ArrayList<>();
         if (tarefaDto.getPrioridadeDaTarefa().equalsIgnoreCase("ALTA")|
                 tarefaDto.getPrioridadeDaTarefa().equalsIgnoreCase("MEDIA")|

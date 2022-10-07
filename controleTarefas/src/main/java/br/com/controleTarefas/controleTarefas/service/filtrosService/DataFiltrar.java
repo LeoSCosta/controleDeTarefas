@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class DataFiltrar implements Filtrar {
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         List<Tarefa> tarefasAux = new ArrayList<>();
         if (!(tarefaDto.getDataInicial() == null) & !tarefaDto.getDataInicial().isEmpty()){
             if (!(tarefaDto.getDataFinal() == null) & !(tarefaDto.getDataFinal().isEmpty())){

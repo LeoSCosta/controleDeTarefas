@@ -13,7 +13,7 @@ import java.util.List;
 public class FrequenciaFiltrar implements Filtrar {
 
     @Override
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository) {
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas) {
         List<Tarefa> tarefasAux = new ArrayList<>();
         if (tarefaDto.getFrequenciaDaTarefa().equalsIgnoreCase("DIARIAMENTE")|
                 tarefaDto.getFrequenciaDaTarefa().equalsIgnoreCase("SEMANALMENTE")|

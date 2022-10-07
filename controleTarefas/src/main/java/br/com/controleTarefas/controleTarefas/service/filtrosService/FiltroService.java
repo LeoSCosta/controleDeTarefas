@@ -20,10 +20,10 @@ public class FiltroService {
     }
 
 
-    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas, TarefaRepository tarefaRepository, ProjetoRepository projetoRepository){
+    public List<Tarefa> filtrar(TarefaDto tarefaDto, List<Tarefa> tarefas){
 
         for (Filtrar filtrar : filtros){
-            tarefas = filtrar.filtrar(tarefaDto, tarefas, tarefaRepository, projetoRepository);
+            tarefas = filtrar.filtrar(tarefaDto, tarefas);
         }
 
         return tarefas;
